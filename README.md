@@ -7,12 +7,15 @@ description: the code here contains my answers/solutions to ten different questi
 --customers consist of customer_id and product_key there is no primary key, it may contain duplicates, customer id is not null, product key is primary key
 
 SELECT
-	   c.customer_id
-    ,p.product_name
+	 c.customer_id
+    	,p.product_name
+    
 FROM
-	customers c
+     	customers c
+ 
 INNER JOIN 
-	products p
+		
+  	products p
 ON
 	c.product_key = p.product_key;
 
