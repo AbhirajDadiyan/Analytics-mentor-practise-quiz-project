@@ -6,7 +6,7 @@ description: the code here contains my answers/solutions to ten different questi
 two tables are products and customers, products consist of product key and product name where product_key is foriegn key, 
 customers consist of customer_id and product_key there is no primary key, it may contain duplicates, customer id is not null, product key is primary key*/
 
-'''
+~
 SELECT
 	 c.customer_id
  	,p.product_name 
@@ -16,7 +16,7 @@ INNER JOIN
   	products p
 ON
 	c.product_key = p.product_key;
-'''
+~
 /*Q2 To be done*/
 
 /*Q:3 Product_key number 2 is being replaced by a new product with a product_key of 4. 
