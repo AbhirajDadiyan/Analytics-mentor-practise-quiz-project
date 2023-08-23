@@ -33,7 +33,7 @@ AND
   	customer_id =3;
    
 SELECT
-	  customer_id
+    customer_id
    ,product_key
 FROM
 	customers_for_update
@@ -46,9 +46,9 @@ than the average purchase_amount (across all purchases).
 Return the customer_name, the purchase_amount, and the average purchase_amount (across all records). */
 ```
 SELECT
-    cs.customer_name, 
-    cs.purchase_amount,
-    (SELECT AVG(purchase_amount) FROM customer_sales) AS average_purchase_amount
+    cs.customer_name 
+   ,cs.purchase_amount
+   ,(SELECT AVG(purchase_amount) FROM customer_sales) AS average_purchase_amount
 FROM 
     customer_sales AS cs
 WHERE 
@@ -59,7 +59,7 @@ WHERE
 that this field should be called "product_id" instead. Write a SQL statement to update the table to update the field name to be "product_id" */
 ```
 ALTER TABLE
-  customers_for_col_name_change 
+        customers_for_col_name_change 
         RENAME COLUMN product_key TO product_id;
 SELECT
 	*
@@ -73,17 +73,17 @@ FROM
  and then by product_name (alphabetically) */
 ```
 SELECT 
-    c.customer_id
+   c.customer_id
   ,COALESCE(p.product_name, 'unknown-product') AS    product_name
 FROM 
     customers c
 LEFT JOIN 
     products p 
 ON 
-	c.product_key = p.product_key
+    c.product_key = p.product_key
 ORDER BY 
-    c.customer_id, 
-    COALESCE(p.product_name, 'unknown-product');
+    c.customer_id
+   ,COALESCE(p.product_name, 'unknown-product');
 ```
 
 /* Q7 Write a SQL query to show the all customer_ids and all product_names. 
@@ -91,17 +91,17 @@ ORDER BY
  Return the result order by the customer_id (least to greatest) and then by product_name (alphabetically) */
 ```
 SELECT 
-    DISTINCT c.customer_id,
-    p.product_name
+    DISTINCT c.customer_id
+   ,p.product_name
 FROM 
     products p
 LEFT JOIN 
     customers c 
 ON 
-	p.product_key = c.product_key
+    p.product_key = c.product_key
 ORDER BY 
-    c.customer_id, 
-    p.product_name;
+    c.customer_id
+   ,p.product_name;
 ```
 
 /* Q8 Write a SQL query to show all of the employee_names along with the employee's manager's name. 
@@ -109,15 +109,15 @@ If the employee doesn't have a manager, leave the manager's name as "null"
 Return the result order by the employee's name (alphabetically), then by the manager's name (alphabetically) */
 ```
 SELECT
-    e1.employee_name AS "Employee Name",
-    COALESCE(e2.employee_name, 'null') AS "Manager's Name"
+    e1.employee_name AS "Employee Name"
+   ,COALESCE(e2.employee_name, 'null') AS "Manager's Name"
 FROM
     employees e1
 LEFT JOIN
     employees e2 ON e1.manager_id = e2.employee_id
 ORDER BY
-    e1.employee_name ASC,
-    COALESCE(e2.employee_name, 'null') ASC;
+    e1.employee_name ASC
+   ,COALESCE(e2.employee_name, 'null') ASC;
 ```
 
 /*Q9 Write a SQL query to returned the min, max, average, and total sales across all customers in the customer_sales table.
